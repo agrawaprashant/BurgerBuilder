@@ -1,5 +1,4 @@
-.Input,
-.Select {
+.Input {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
@@ -30,4 +29,9 @@ option {
 .InputElement:focus {
   outline: none;
   background-color: #ccc;
+}
+
+.Invalid {
+  border: 1px solid #f00;
+  background-color: rgb(247, 142, 142);
 }

@@ -3,11 +3,18 @@ import classes from "./input.module.css";
 
 const input = props => {
   let inputElement = null;
+  let inputClasses = [classes.InputElement];
+
+  if (!props.valid && props.touched) {
+    inputClasses.push(classes.Invalid);
+  }
+
+  inputClasses = inputClasses.join(" ");
   switch (props.elementType) {
     case "input":
       inputElement = (
         <input
-          className={classes.InputElement}
+          className={inputClasses}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -17,7 +24,7 @@ const input = props => {
     case "textarea":
       inputElement = (
         <textarea
-          className={classes.InputElement}
+          className={inputClasses}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -27,7 +34,7 @@ const input = props => {
     case "select":
       inputElement = (
         <select
-          className={classes.Select}
+          className={inputClasses}
           onChange={props.changed}
           defaultValue={props.elementConfig.placeholder}
         >
@@ -47,7 +54,7 @@ const input = props => {
     default:
       inputElement = (
         <input
-          className={classes.InputElement}
+          className={inputClasses}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
