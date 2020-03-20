@@ -6,7 +6,7 @@ import withError from "../../hoc/withErrorHandler/withErrorHandler";
 class Orders extends React.Component {
   state = {
     orders: [],
-    loading: false
+    loading: true
   };
 
   async componentDidMount() {
@@ -26,19 +26,21 @@ class Orders extends React.Component {
     }
   }
   render() {
-    let orders = this.state.orders.map(order => {
-      return (
-        <Order
-          key={order.id}
-          ingredients={order.ingredients}
-          price={order.price}
-        />
-      );
-    });
-
+    let orders = null;
     if (this.state.loading) {
       orders = <Spinner />;
+    } else {
+      orders = this.state.orders.map(order => {
+        return (
+          <Order
+            key={order.id}
+            ingredients={order.ingredients}
+            price={order.price}
+          />
+        );
+      });
     }
+
     return orders;
   }
 }

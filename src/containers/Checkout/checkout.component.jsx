@@ -14,8 +14,7 @@ class Checkout extends React.Component {
 
   UNSAFE_componentWillMount() {
     const query = new URLSearchParams(this.props.location.search);
-    console.log(query);
-    console.log(this.props);
+
     const ingredients = {};
     let price = 0;
     for (let param of query.entries()) {

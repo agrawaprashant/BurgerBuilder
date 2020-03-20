@@ -10,6 +10,7 @@ const Order = props => {
     return (
       <span
         style={{
+          textTransform: "capitalize",
           display: "inline-block",
           border: "1px solid #ccc",
           padding: "5px 10px",
@@ -28,8 +29,7 @@ const Order = props => {
     <div className={classes.Order}>
       <p>Ingredients: {ingSpan} </p>
       <p>
-        Price:{" "}
-        <strong>USD {Number.parseFloat(props.price.toFixed(2), 10)}</strong>
+        Price: <strong>USD {Number.parseFloat(props.price.toFixed(2))}</strong>
       </p>
     </div>
   );
