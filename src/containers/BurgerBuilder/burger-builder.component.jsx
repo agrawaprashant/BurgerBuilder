@@ -42,7 +42,11 @@ class BurgerBuilder extends React.Component {
 
   purchaseContinueHandler = () => {
     this.props.onInitPurchase();
-    this.props.history.push("/checkout");
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/checkout");
+    } else {
+      this.props.history.push("/auth");
+    }
   };
   render() {
     const disabledControls = {
@@ -66,6 +70,7 @@ class BurgerBuilder extends React.Component {
             price={this.props.totalPrice}
             purchasable={this.updatePurchaseState(this.props.ingredients)}
             ordered={this.purchaseHandle}
+            isAuth={this.props.isAuthenticated}
           />
         </Aux>
       );
@@ -97,7 +102,8 @@ const mapStateToProps = state => {
   return {
     ingredients: state.bgr.ingredients,
     totalPrice: state.bgr.price,
-    error: state.bgr.error
+    error: state.bgr.error,
+    isAuthenticated: state.auth.token !== null
   };
 };
 

@@ -144,7 +144,8 @@ class ContactData extends React.Component {
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ings,
-      price: this.props.price
+      price: this.props.price,
+      userId: this.props.userId
     };
 
     const customerDetails = {};
@@ -157,7 +158,7 @@ class ContactData extends React.Component {
     }
 
     order.customer = customerDetails;
-    this.props.onPurchaseBurger(order);
+    this.props.onPurchaseBurger(order, this.props.token);
   };
 
   render() {
@@ -212,13 +213,16 @@ const mapStateToProps = state => {
   return {
     ings: state.bgr.ingredients,
     price: state.bgr.price,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token,
+    userId: state.auth.userId
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPurchaseBurger: orderData => dispatch(orderActions.makeOrder(orderData))
+    onPurchaseBurger: (orderData, token) =>
+      dispatch(orderActions.makeOrder(orderData, token))
   };
 };
 
