@@ -11,7 +11,10 @@ import orderReducer from "./store/reducers/order.reducer";
 import authReducer from "./store/reducers/auth.reducer";
 import * as serviceWorker from "./serviceWorker";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  process.env.NOE_ENV === "development"
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    : null || compose;
 const rootReducer = combineReducers({
   bgr: burgerBuilderReducer,
   order: orderReducer,
